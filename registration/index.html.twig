@@ -1,0 +1,51 @@
+{# {% extends 'home.html.twig' %} #}
+
+<title>{% block title %}Register Account{% endblock %}</title>
+
+{% block body %}
+<head>
+    <link rel="stylesheet" href="{{asset("styles/login.css")}}" />
+</head>
+
+{# <div class="container">
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }}
+</div> #}
+
+<form method="post">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">	
+        <div class="login_box">
+			<div class="left">
+				<div class="top_link"><a href="{{ path('homepage') }}"><i class="fa-solid fa-circle-chevron-left"></i> Return home</a></div>
+				<div class="contact">
+					<form action="">
+                    <div style="line-height: 0.5; margin-right: 20px; font-family: cursive; padding-top: 200px">
+						<h1 style="text-align:center; padding-bottom: 50px;" class="h3 mb-3 font-weight-normal">REGISTER</h1>
+                        <div class="container">
+						{{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        {{ form_end(form) }}
+                        <br> <br> <br>
+                        <label class="small">Do you have an account? </label>
+                        <a class="small" href="{{ path('app_login') }}">Login</a>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <br> <button class="submit" type="submit">
+                            Sign in
+                        </button>
+                        </div>
+                    </div>
+					</form>
+				</div>
+			</div>
+			<div class="right">
+		        <div class=""><img style="width: 150%;height: 100%;margin-left: 0px;"src="{{asset('uploads/logo-login.jpg')}}" alt=""></div>
+			</div>
+		</div>
+
+
+</form>
+
+
+{% endblock %}

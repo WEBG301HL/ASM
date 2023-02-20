@@ -1,0 +1,83 @@
+{% extends "admin.html.twig" %}
+{% block title %}
+    Admin Page - Product
+{% endblock %}
+{% block body %}
+      <div className="page-heading pb-2 mt-4 mb-2 ">
+                <h3>Manager</h3> <a href="{{path('product_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
+            </div>
+            <div class="page-content mt-4">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            {# <form class="form form-vertical" method="POST" action="#"> #}
+                            {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
+                                <div class="form-body">
+                                    <div class="row">
+                                    
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Product Name</label>
+                                                {{ form_widget(form.name, {'attr':{'placeholder':'Product Name'}}) }}
+                                                {# <input type="text" id="pname" class="form-control"
+                                                    name="Product_Name" placeholder="Product Name"
+                                                    value =""> #}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="contact-info-vertical">Price</label>
+                                                {{ form_widget(form.price, {'attr':{'placeholder':'Price'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Product Date</label>
+                                                {{ form_widget(form.created, {'attr':{'placeholder':'yyyy-mm-dd'}}) }}
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="contact-info-vertical">Quantity</label>
+                                                {{ form_widget(form.quantity, {'attr':{'placeholder':'0-100'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="image-vertical"> {{ form_label(form.file) }}</label>
+                                               
+                                                {{ form_widget(form.file) }}
+                                            </div>
+                                        </div>
+                                        {{ form_widget(form.image) }}
+                                         <div class="pt-3">
+                                            {% set img = form.image.vars.value %}
+                                                {% if img %}
+                                                    <img src="{{asset('uploads/'~img)}}"
+                                                class="w-25 shadow p-3 mb-5 bg-body rounded" />
+                                                {% else %}
+                                                    <img src="https://cdn2.iconfinder.com/data/icons/symbol-blue-set-3/100/Untitled-1-94-512.png"
+                                                class="w-25 shadow p-3 mb-5 bg-body rounded" />
+                                                {% endif %}
+                                                
+                                                
+                                         </div>
+                                         
+                                        <div class="col-12 d-flex justify-content-end pt-2">
+                                        
+                                            {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
+                                          <button type="reset"
+                                                class="btn btn-secondary">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {# </form> #}
+                            {{ form_end(form) }}
+                        </div> <!--card body-->
+                    
+                    </div> <!--card content-->
+                </div> <!--card-->
+            </div><!--page content-->
+{% endblock %}

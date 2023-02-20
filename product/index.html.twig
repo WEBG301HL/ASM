@@ -1,0 +1,47 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %}Hello ProductController!{% endblock %}
+
+{% block body %}
+  <div className="page-heading pb-2 mt-4 mb-2 ">
+                    <h3>Manager</h3> <a href="{{path('product_create')}}"><button type="button" class="btn btn-outline-primary">Insert</button></a>
+                </div>
+                <div class="page-content">
+                <div class="btn-group" role="group" aria-label="Basic outlined example">
+               
+                </div>
+                <div class="card">
+                    <div class="container mb-3">
+                        <div class="table-responsive text-nowrap">
+                      <table class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Created</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                          </tr>
+                        </thead>
+                        <tbody class="table-border-bottom-0">
+                          {% for p in products %}
+                              <tr>
+                                  <td>{{ p.id}}</td>
+                                  <td>{{ p.name}}</td>
+                                  <td>{{ p.price}}</td>
+                                  <td>{{ p.created|date("m/d/Y")}}</td>
+                                  <td>{{ p.quantity}}</td>
+                                  <td>
+                                    <a href="{{path('product_edit',{'id':p.id})}}">Edit</a>
+                                  <a href="{{path('product_delete',{'id':p.id})}}">Delete</a></td>
+                              </tr>
+                          {% endfor %}
+                          
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                </div>
+                </div>
+{% endblock %}
