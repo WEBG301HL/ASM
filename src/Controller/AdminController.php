@@ -5,44 +5,44 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
+
+/**
+* @Route("/admin")
+*/
 class AdminController extends AbstractController
 {
     private ProductRepository $repo;
-    public function __construct(ProductRepository $repo)
+    private UserRepository $urepo;
+    public function __construct(ProductRepository $repo, UserRepository $urepo)
    {
       $this->repo = $repo;
+      $this->urepo = $urepo;
    }
-    /**
-     * @Route("/admin", name="app_admin")
-     */
-    public function addPro(Request $req, SluggerInterface $slugger): Response
-    {
-        $p = new Product();
-        $form = $this->createForm(ProductType::class, $p);
 
-        $form->handleRequest($req);
-        if($form->isSubmitted() && $form->isValid()){
-            if($p->getCreated()===null){
-                $p->setCreated(new \DateTime());
-            }
-            $imgFile = $form->get('file')->getData();
-            if ($imgFile) {
-                $newFilename = $this->uploadImage($imgFile,$slugger);
-                $p->setImage($newFilename);
-            }
-            $this->repo->add($p,true);
-            return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
-        }
-        return $this->render("product/form.html.twig",[
-            'form' => $form->createView()
+   /**
+     * @Route("/", name="app_admin")
+     */
+    public function index(Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+        $accounts = $this->urepo->findAll();
+        return $this->render('admin/index.html.twig', [
+            'accounts'=>$accounts
         ]);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
     }
 
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
