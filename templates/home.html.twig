@@ -20,7 +20,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">	
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{asset("styles/style.css")}}" />
-
 </head>
 <body>
 
@@ -41,7 +40,7 @@
     <!-- Collapsible wrapper -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent1">      
       <!-- Navbar brand -->
-      <a class="navbar-brand mt-2 mt-sm-0" href="#">
+      <a class="navbar-brand mt-2 mt-sm-0" href="{{path('homepage')}}">
         <img
           src="./uploads/logo.png"
           height="100"
@@ -53,16 +52,20 @@
 <!-- Left links -->
       <ul style="font-family: cursive" class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item active">
-          <a class="nav-link " href="#">Home</a>
+          <a class="nav-link " href="{{path('homepage')}}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{path('product_show')}}">Product</a>
+          <a class="nav-link" href="{{path('homepage')}}">Product</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{path('product_show')}}">Contact</a>
+          <a class="nav-link" href="">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{path('product_show')}}">Admin</a>
+           {% if app.user %}
+              <a class="nav-link" href="{{path('app_admin')}}">Admin</a>
+            {% else %}
+              <a class="nav-link" href="{{path('app_login')}}">Admin</a>
+            {% endif %}
         </li>
       </ul>
       <!-- Left links -->      
@@ -73,18 +76,14 @@
     <div style="font-family: cursive" class="d-flex align-items-center">
       
       {% if app.user %}
-{#           
-          <a class="nav-link me-3" href="#">
-            <i class="fas fa-shopping-cart"></i>
-          </a> #}
            Welcome {{ app.user.name }},
           <a class="nav-link me-3" href="{{ path('app_logout') }}">Logout</a>
-        {% else %}
+      {% else %}
         <a class="nav-link" href="{{ path('app_login') }}">Login</a>
+  
+        <a class="nav-link" href="{{ path('app_register') }}">Register</a>
         
-          <a class="nav-link" href="{{ path('app_register') }}">Register</a>
-        
-        {% endif %}
+      {% endif %}
 
       <!-- Icon -->
       <a class="nav-link me-3" href="{{ path('app_cart') }}">
@@ -104,7 +103,7 @@
 <!-- Navbar -->
    <link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <div style="height: 200px"></div>
+  <div style="height: 110px"></div>
 
 {% block body %}
  <!--Main layout-->
@@ -158,16 +157,16 @@
     </div>
     <div class="row">
      {% for p in products %}
-        <div class="col-lg-12 mx-auto">
+        <div class="col-lg-6 mx-auto">
             <!-- List group-->
             <ul class="list-group shadow">
                 <!-- list group item-->
-                <li style="margin-bottom: 20px++" class="list-group-item">
+                <li style="margin-bottom: 20px++;" class="list-group-item">
                     <!-- Custom content-->
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
                             <a style="text-decoration: none;" href="#"><h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5></a>
-                            <p class="font-italic text-muted mb-0 small">128 GB ROM | 15.49 cm (6.1 inch) Display 12MP Rear Camera | 7MP Front Camera A12 Bionic Chip Processor</p>
+                            <p class="font-italic text-muted mb-0 small">{{p.name }}</p>
                             <div class="d-flex align-items-center justify-content-between mt-1">
                                 <h6 class="font-weight-bold my-2">{{p.price}} $</h6>
                                 <ul class="list-inline small">
@@ -180,7 +179,7 @@
                                 </ul>
                             </div>
                             {% set img = p.image %}
-                        </div><img src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
+                        </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
                           <div class="col-md-6 col-sm-6 col-xs-6"> 
 							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
 						              </div>
