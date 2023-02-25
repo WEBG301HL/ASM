@@ -11,9 +11,9 @@ class MainController extends AbstractController
 {
     private ProductRepository $repo;
     public function __construct(ProductRepository $repo)
-   {
-      $this->repo = $repo;
-   }
+    {
+        $this->repo = $repo;
+    }
     /**
      * @Route("/", name="homepage")
      */
@@ -21,16 +21,23 @@ class MainController extends AbstractController
     {
         $products = $this->repo->findAll();
         return $this->render('home.html.twig', [
-            'products'=>$products
+            'products' => $products
         ]);
     }
-     /**
-     * @Route("/admin", name="adminPage")
+    
+    /**
+     * @Route("/aboutUs", name="about_us")
      */
-    public function adminPageAction(): Response{
-        return $this->render('admin.html.twig', [
-            
-        ]);
+    public function aboutUs(): Response
+    {
+        return $this->render('main/about.html.twig', []);
     }
 
+    /**
+     * @Route("/admin", name="adminPage")
+     */
+    public function adminPageAction(): Response
+    {
+        return $this->render('admin.html.twig', []);
+    }
 }
