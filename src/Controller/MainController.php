@@ -24,7 +24,7 @@ class MainController extends AbstractController
             'products' => $products
         ]);
     }
-    
+
     /**
      * @Route("/aboutUs", name="about_us")
      */
@@ -33,11 +33,5 @@ class MainController extends AbstractController
         return $this->render('main/about.html.twig', []);
     }
 
-    /**
-     * @Route("/admin", name="adminPage")
-     */
-    public function adminPageAction(): Response
-    {
-        return $this->render('admin.html.twig', []);
-    }
+
 }
