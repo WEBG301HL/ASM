@@ -45,6 +45,84 @@ class AdminController extends AbstractController
         }
     }
 
+    
+    /**
+     * @Route("/products", name="product_show")
+     */
+    public function proShow(Request $req, Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $products = $this->repo->findAll();
+            return $this->render('admin/product/index.html.twig', [
+            'products'=>$products
+            ]);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
+
+    /**
+     * @Route("/products/add", name="product_add")
+    */
+    public function addShow(Request $req, SluggerInterface $slugger,Security $security): Response
+    {
+         if ($security->isGranted('ROLE_ADMIN')) {
+            $p = new Product();
+            $form = $this->createForm(ProductType::class, $p);
+
+            $form->handleRequest($req);
+            if($form->isSubmitted() && $form->isValid()){
+                if($p->getCreated()===null){
+                    $p->setCreated(new \DateTime());
+                }
+                $imgFile = $form->get('file')->getData();
+                if ($imgFile) {
+                    $newFilename = $this->uploadImage($imgFile,$slugger);
+                    $p->setImage($newFilename);
+                }
+                $this->repo->add($p,true);
+                return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+            }
+            return $this->render("admin/product/add.html.twig",[
+                'form' => $form->createView()
+            ]);
+        }else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
+    /**
+     * @Route("/products/edit/{id}", name="product_edit",requirements={"id"="\d+"})
+     */
+    public function editPro(Request $req, Product $p, SluggerInterface $slugger): Response
+    {
+        $form = $this->createForm(ProductType::class, $p);   
+
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+
+            if($p->getCreated()===null){
+                $p->setCreated(new \DateTime());
+            }
+            $imgFile = $form->get('file')->getData();
+            if ($imgFile) {
+                $newFilename = $this->uploadImage($imgFile,$slugger);
+                $p->setImage($newFilename);
+            }
+            $this->repo->add($p,true);
+            return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("admin/product/edit.html.twig",[
+            'form' => $form->createView()
+        ]);
+    }
+
+    // ------------------------------------------------------------------------------------- //
+
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
         $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $slugger->slug($originalFilename);
