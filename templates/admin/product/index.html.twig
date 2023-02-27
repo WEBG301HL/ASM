@@ -39,7 +39,7 @@
 						<td><img style="height: 100;width: 140px;border-radius: 50px" src="{{asset('uploads/'~img)}}" ></td>
                         <td>{{a.quantity}}</td>
 						<td>
-							<a href="" class="edit" data-toggle="modal"><i class="fa-solid fa-user-pen" title="Edit"></i></a>
+							<a href="{{ path('product_edit', {'id':a.id}) }}" class="edit" data-toggle="modal"><i class="fa-solid fa-user-pen" title="Edit"></i></a>
 							<a href="" class="delete" data-toggle="modal"><i class="fa-solid fa-trash-can" title="Delete"></i></a>
 						</td>
 				
