@@ -48,23 +48,15 @@
                     <!-- Custom content-->
                     <div class="media align-items-lg-center flex-column flex-lg-row p-3">
                         <div class="media-body order-2 order-lg-1">
-                            <a style="text-decoration: none;" href="#"><h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5></a>
-                            <p class="font-italic text-muted mb-0 small">{{p.name }}</p>
+                            <a style="text-decoration: none;" href="{{path('product_read',{"id":p.id})}}"><h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5></a>
                             <div class="d-flex align-items-center justify-content-between mt-1">
                                 <h6 class="font-weight-bold my-2">{{p.price}} $</h6>
-                                <ul class="list-inline small">
-                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
-                                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
-                                   
-                                </ul>
                             </div>
                             {% set img = p.image %}
                         </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
 <div class="col-md-6 col-sm-6 col-xs-6"> 
 							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+                                          <a href="{{path('homepage')}}" class="btn btn-success">Back to home</a>
 						              </div>
                     </div> <!-- End -->
 
