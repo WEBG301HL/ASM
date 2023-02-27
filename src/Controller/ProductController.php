@@ -24,7 +24,7 @@ class ProductController extends AbstractController
       $this->repo = $repo;
    }
     /**
-     * @Route("/", name="product_show")
+     * @Route("/show", name="product_show")
      */
     public function readAllAction(): Response
     {
