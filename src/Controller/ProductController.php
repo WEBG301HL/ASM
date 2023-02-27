@@ -13,9 +13,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
-/**
- * @Route("/product")
- */
+
 class ProductController extends AbstractController
 {
     private ProductRepository $repo;
@@ -24,7 +22,7 @@ class ProductController extends AbstractController
       $this->repo = $repo;
    }
     /**
-     * @Route("/show", name="product_show")
+     * @Route("/", name="product_show")
      */
     public function readAllAction(): Response
     {

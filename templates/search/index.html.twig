@@ -1,20 +1,81 @@
-{% extends 'base.html.twig' %}
+{% extends 'home.html.twig' %}
 
-{% block title %}Hello SearchController!{% endblock %}
+{% block title %}Search Product{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <main>
+    <div style="font-family: cursive" class="container">
+  <!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #21d192">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <!-- Navbar brand -->
+    {# <a class="navbar-brand" href="#">Categories:</a> #}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/Web_Sample/src/Controller/SearchController.php'|file_link(0) }}">src/Controller/SearchController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/Web_Sample/templates/search/index.html.twig'|file_link(0) }}">templates/search/index.html.twig</a></code></li>
-    </ul>
+    <!-- Toggle button -->
+    <button 
+       class="navbar-toggler" 
+       type="button" 
+       data-bs-toggle="collapse" 
+       data-bs-target="#navbarSupportedContent2">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+      
+    </div>
+  </div>
+  <!-- Container wrapper -->
+</nav>
+
+
+{# -------------------------------------------------------------- #}
+<div class="container py-5">
+    <div class="row text-center text-white mb-5">
+        <div class="col-lg-7 mx-auto">
+            <h1 style="color: red" class="display-4">Result of search: {{search }}</h1>
+        </div>
+    </div>
+    <div class="row">
+     {% for p in products %}
+        <div class="col-lg-6 mx-auto">
+            <!-- List group-->
+            <ul class="list-group shadow">
+                <!-- list group item-->
+                <li style="margin-bottom: 20px++;" class="list-group-item">
+                    <!-- Custom content-->
+                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
+                        <div class="media-body order-2 order-lg-1">
+                            <a style="text-decoration: none;" href="#"><h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5></a>
+                            <p class="font-italic text-muted mb-0 small">{{p.name }}</p>
+                            <div class="d-flex align-items-center justify-content-between mt-1">
+                                <h6 class="font-weight-bold my-2">{{p.price}} $</h6>
+                                <ul class="list-inline small">
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star text-success"></i></li>
+                                    <li class="list-inline-item m-0"><i class="fa fa-star-o text-gray"></i></li>
+                                   
+                                </ul>
+                            </div>
+                            {% set img = p.image %}
+                        </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
+<div class="col-md-6 col-sm-6 col-xs-6"> 
+							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+						              </div>
+                    </div> <!-- End -->
+
+                </li> <!-- End -->
+                <!-- list group item-->
+            </ul> <!-- End --> <br> <br>
+           
+        </div>  {% endfor %}
+    </div>
+
 </div>
+</main>
+ <!--Main layout-->
 {% endblock %}
