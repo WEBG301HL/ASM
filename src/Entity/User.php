@@ -47,15 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $address;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Cart::class, mappedBy="userCart")
-     */
-    private $carts;
 
-    public function __construct()
-    {
-        $this->carts = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
