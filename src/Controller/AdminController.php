@@ -63,6 +63,40 @@ class AdminController extends AbstractController
         }
     }
 
+
+    /**
+     * @Route("/products/add", name="product_add")
+    */
+    public function addShow(Request $req, SluggerInterface $slugger,Security $security): Response
+    {
+         if ($security->isGranted('ROLE_ADMIN')) {
+            $p = new Product();
+            $form = $this->createForm(ProductType::class, $p);
+
+            $form->handleRequest($req);
+            if($form->isSubmitted() && $form->isValid()){
+                if($p->getCreated()===null){
+                    $p->setCreated(new \DateTime());
+                }
+                $imgFile = $form->get('file')->getData();
+                if ($imgFile) {
+                    $newFilename = $this->uploadImage($imgFile,$slugger);
+                    $p->setImage($newFilename);
+                }
+                $this->repo->add($p,true);
+                return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+            }
+            return $this->render("admin/product/add.html.twig",[
+                'form' => $form->createView()
+            ]);
+        }else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
+    // ------------------------------------------------------------------------------------- //
+
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
         $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $slugger->slug($originalFilename);
