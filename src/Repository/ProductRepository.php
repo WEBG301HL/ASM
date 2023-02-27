@@ -63,4 +63,18 @@ class ProductRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+     /**
+    * @return Product[] Returns an array of Product objects
+    */
+   public function findPro($value): array
+   {
+       return $this->createQueryBuilder('p')
+           ->select('p.id,p.name,p.price,p.image')
+           ->where('p.name LIKE :productName')
+           ->setParameter('productName',"%".$value."%")
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 }
