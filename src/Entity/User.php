@@ -47,6 +47,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $address;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Cart::class, mappedBy="userCart")
+     */
+    private $carts;
+
+    public function __construct()
+    {
+        $this->carts = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -158,6 +168,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAddress(string $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cart>
+     */
+    public function getCarts(): Collection
+    {
+        return $this->carts;
+    }
+
+    public function addCart(Cart $cart): self
+    {
+        if (!$this->carts->contains($cart)) {
+            $this->carts[] = $cart;
+            $cart->setUserCart($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCart(Cart $cart): self
+    {
+        if ($this->carts->removeElement($cart)) {
+            // set the owning side to null (unless already changed)
+            if ($cart->getUserCart() === $this) {
+                $cart->setUserCart(null);
+            }
+        }
 
         return $this;
     }
