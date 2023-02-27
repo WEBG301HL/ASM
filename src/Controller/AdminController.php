@@ -45,6 +45,24 @@ class AdminController extends AbstractController
         }
     }
 
+    
+    /**
+     * @Route("/products", name="product_show")
+     */
+    public function proShow(Request $req, Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $products = $this->repo->findAll();
+            return $this->render('admin/product/index.html.twig', [
+            'products'=>$products
+            ]);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
         $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = $slugger->slug($originalFilename);
