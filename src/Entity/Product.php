@@ -49,6 +49,11 @@ class Product
      */
     private $carts;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="products")
+     */
+    private $cat;
+
     public function __construct()
     {
         $this->carts = new ArrayCollection();
@@ -145,6 +150,18 @@ class Product
                 $cart->setProCart(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCat(): ?Category
+    {
+        return $this->cat;
+    }
+
+    public function setCat(?Category $cat): self
+    {
+        $this->cat = $cat;
 
         return $this;
     }
