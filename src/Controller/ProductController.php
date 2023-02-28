@@ -16,5 +16,13 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class ProductController extends AbstractController
 {
-
+     /**
+     * @Route("/product/{id}", name="product_read",requirements={"id"="\d+"})
+     */
+    public function showAction(Product $p): Response
+    {
+        return $this->render('detail.html.twig', [
+            'p'=>$p
+        ]);
+    }
 }

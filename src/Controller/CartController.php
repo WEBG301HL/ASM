@@ -32,7 +32,7 @@ class CartController extends AbstractController
     }
 
     /**
-     * @Route("/car/add/{id}", name="add_cart")
+     * @Route("/cart/add/{id}", name="add_cart")
      */
     public function addCart(Product $p, Request $req, CartRepository $repo): Response
     {
