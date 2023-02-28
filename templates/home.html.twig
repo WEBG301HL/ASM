@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}Welcome My Shop!{% endblock %}</title>
+    <title>{% block title %}Welcome Min Car!{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
     <!-- Google Fonts Roboto -->
@@ -104,9 +104,10 @@
 {% block body %}
  <!--Main layout-->
 <main>
-    <div style="font-family: cursive" class="container">
+    <div style="" class="container">
   <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #21d192">
+
   <!-- Container wrapper -->
   <div class="container-fluid">
 
@@ -140,18 +141,16 @@
 			<i class="fa-solid fa-magnifying-glass"></i>
 			</button>
 			</form>
-
     </div>
   </div>
   <!-- Container wrapper -->
 </nav>
-
-
 {# -------------------------------------------------------------- #}
+        
 <div class="container py-5">
     <div class="row text-center text-white mb-5">
         <div class="col-lg-7 mx-auto">
-            <h1 style="color: red" class="display-4">Product List</h1>
+            <h1 style="color: black" class="display-4">Product List</h1>
         </div>
     </div>
     <div class="row">
@@ -172,7 +171,7 @@
                             {% set img = p.image %}
                         </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
                           <div class="col-md-6 col-sm-6 col-xs-6"> 
-							              <a href="#" class="btn btn-success">Add to cart</a>
+							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
 						              </div>
                     </div> <!-- End -->
 
@@ -192,12 +191,12 @@
 {# <div class="container"> #}
 <footer
           class="text-center text-lg-start text-dark"
-          style="background-color: #ECEFF1"
+          style="background-color: #ECEFF1;margin-left: 6rem; margin-right: 6rem;"
           >
     <!-- Section: Social media -->
     <section
              class="d-flex justify-content-between p-4 text-white"
-             style="background-color: #21D192; margin-left: 13rem; margin-right: 13rem;"
+             style="background-color: #21D192"
              >
       <!-- Left -->
       <div class="me-5">
@@ -207,7 +206,7 @@
 
       <!-- Right -->
       <div>
-        <a href="" class="text-white me-4">
+        <a href="https://www.facebook.com/quoctuan.huynh.5203" class="text-white me-4">
           <i class="fa-brands fa-facebook"></i>
         </a>
         <a href="" class="text-white me-4">
