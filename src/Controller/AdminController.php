@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\ProductType;
+use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,10 +23,12 @@ class AdminController extends AbstractController
 {
     private ProductRepository $repo;
     private UserRepository $urepo;
-    public function __construct(ProductRepository $repo, UserRepository $urepo)
+    private CategoryRepository $crepo;
+    public function __construct(ProductRepository $repo, UserRepository $urepo, CategoryRepository $crepo)
    {
       $this->repo = $repo;
       $this->urepo = $urepo;
+      $this->crepo = $crepo;
    }
 
    /**
@@ -136,6 +139,23 @@ class AdminController extends AbstractController
             echo $e;
         }
         return $newFilename;
+    }
+
+    /**
+     * @Route("/category", name="category_show")
+     */
+    public function catShow(Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $category = $this->crepo->findAll();
+            return $this->render('admin/category/index.html.twig', [
+            'category'=>$category
+            ]);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
     }
 
 }
