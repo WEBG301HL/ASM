@@ -31,18 +31,18 @@
                         
                         <hr class="singleline">
                         <div class="order_info d-flex flex-row">
-                            <form action="#">
                         </div>
                         <div class="row">
-                            <form action="#" method="get">
+                            <form action="{{ path('add_cart',{"id":p.id}) }}" method="get">
                             <div class="col-lg-3 mb-4" style="margin-left: 13px;">
                                 <div class="form-group">
                                     <label for="qty_label">Quantity:</label>
                                     <input type="number" id="quantity_input" class="form-control" name="quantity_input" value="1" >     
                                 </div>
                             </div>
-                            <div class="col-lg-9"> <button type="submit" class="btn btn-success">Add to Cart</button>
-                            <a href="{{path('homepage')}}" class="btn btn-success">Back to home</a> 
+                            <div class="col-lg-9"> 
+                              <button type="submit" class="btn btn-primary shop-button">Add to Cart</button>
+                              <a href="{{path('homepage')}}" class="btn btn-success">Back to home</a> 
                             <!-- <button type="button" class="btn btn-success shop-button">Buy Now</button> -->
                             </div>
                             </form>
