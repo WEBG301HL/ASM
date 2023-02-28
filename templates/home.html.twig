@@ -19,7 +19,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> #}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">	
     <!-- Custom styles -->
-    <link rel="stylesheet" href="{{asset("styles/style.css")}}" />
+    {# <link rel="stylesheet" href="{{asset("styles/style.css")}}" /> #}
 </head>
 <body>
 
@@ -172,7 +172,7 @@
                             {% set img = p.image %}
                         </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
                           <div class="col-md-6 col-sm-6 col-xs-6"> 
-							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+							              <a href="#" class="btn btn-success">Add to cart</a>
 						              </div>
                     </div> <!-- End -->
 
