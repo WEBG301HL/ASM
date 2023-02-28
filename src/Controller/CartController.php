@@ -20,8 +20,10 @@ class CartController extends AbstractController
         $user = $this->getUser();
         if ($user != "") {
             $carts = $repo->cartShow($user->getId());
+            $total= $repo->totalPricecart($user);
             return $this->render('cart/index.html.twig',[
-                'carts'=>$carts
+                'carts'=>$carts,
+                'total'=>$total[0]['Total']
             ]);   
         }
         else{
@@ -43,5 +45,6 @@ class CartController extends AbstractController
         $repo->add($cart, true);
         return $this->redirectToRoute('app_cart');
     }
+
 
 }

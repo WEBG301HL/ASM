@@ -48,12 +48,12 @@
                         </div>
                         <div class="ms-3">
                           <h5>{{c.name}}</h5>
-                          <p class="small mb-0">256GB, Navy Blue</p>
+                          <p class="small mb-0"></p>
                         </div>
                       </div>
                       <div class="d-flex flex-row align-items-center">
                         <div style="width: 50px;">
-                          <h5 class="fw-normal mb-0">2</h5>
+                          <h5 class="fw-normal mb-0">{{c.quantity }}</h5>
                         </div>
                         <div style="width: 80px;">
                           <h5 class="mb-0">${{c.price}}</h5>
@@ -89,32 +89,15 @@
                     <form class="mt-4">
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
-                          placeholder="Customer Name " />
+                          placeholder="{{ app.user.name }}" />
                         <label class="form-label" for="typeName">Customer Name</label>
                       </div>
 
                       <div class="form-outline form-white mb-4">
                         <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
-                          placeholder="Address" minlength="19" maxlength="19" />
+                          placeholder="{{ app.user.address }}" minlength="19" maxlength="19" />
                         <label class="form-label" for="typeText">Address</label>
                       </div>
-{# 
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" id="typeExp" class="form-control form-control-lg"
-                              placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
-                            <label class="form-label" for="typeExp">Expiration</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="password" id="typeText" class="form-control form-control-lg"
-                              placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
-                            <label class="form-label" for="typeText">Cvv</label>
-                          </div>
-                        </div>
-                      </div> #}
 
                     </form>
 
@@ -122,7 +105,7 @@
 
                     <div class="d-flex justify-content-between">
                       <p class="mb-2">Order</p>
-                      <p class="mb-2">$</p>
+                      <p class="mb-2">${{ total }}</p>
                     </div>
 
                     <div class="d-flex justify-content-between">
@@ -132,12 +115,12 @@
 
                     <div class="d-flex justify-content-between mb-4">
                       <p class="mb-2">Total(Incl. taxes)</p>
-                      <p class="mb-2">$</p>
+                      <p class="mb-2" style="">${{ total }}</p>
                     </div>
 
                     <button type="button" class="btn btn-info btn-block btn-lg">
                       <div class="d-flex justify-content-between">
-                        <span>$</span>
+                        <span></span>
                         <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                       </div>
                     </button>
