@@ -45,7 +45,7 @@ class CartRepository extends ServiceEntityRepository
    public function cartShow($value): array
    {
        return $this->createQueryBuilder('c')
-        ->select('c.id cid, p.name , c.quantity, p.price, p.image,')
+        ->select('c.id cid, p.name , c.quantity, p.price, p.image')
             ->innerJoin('c.proCart','p')
             ->innerJoin('c.userCart','u')
            ->where('u.id = :val')
