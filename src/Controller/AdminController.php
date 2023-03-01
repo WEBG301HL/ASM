@@ -208,6 +208,24 @@ class AdminController extends AbstractController
          $this->crepo->remove($c,true);
          return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
      }
+     
+
+      /**
+     * @Route("/category/edit/{id}", name="category_edit",requirements={"id"="\d+"})
+     */
+    public function editCat(Request $req, Category $c,SluggerInterface $slugger): Response
+    {
+        $form = $this->createForm(CategoryType::class, $c);   
+
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->crepo->add($c,true);
+            return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("admin/category/edit.html.twig",[
+            'form' => $form->createView()
+        ]);
+    }
 
     //  =============================================================================== //
      
