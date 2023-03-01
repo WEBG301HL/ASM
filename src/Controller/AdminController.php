@@ -4,10 +4,12 @@ namespace App\Controller;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Entity\Supplier;
 use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
+use App\Repository\SupplierRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -26,11 +28,13 @@ class AdminController extends AbstractController
     private ProductRepository $repo;
     private UserRepository $urepo;
     private CategoryRepository $crepo;
-    public function __construct(ProductRepository $repo, UserRepository $urepo, CategoryRepository $crepo)
+    private SupplierRepository $srepo;
+    public function __construct(ProductRepository $repo, UserRepository $urepo, CategoryRepository $crepo, SupplierRepository $srepo)
    {
       $this->repo = $repo;
       $this->urepo = $urepo;
       $this->crepo = $crepo;
+      $this->srepo = $srepo;
    }
 
    /**
@@ -204,6 +208,25 @@ class AdminController extends AbstractController
          $this->crepo->remove($c,true);
          return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
      }
+
+    //  =============================================================================== //
+     
+    /**
+     * @Route("/supplier", name="supplier_show")
+     */
+    public function supShow(Request $req, Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $supplier = $this->srepo->findAll();
+            return $this->render('admin/supplier/index.html.twig', [
+            'supplier'=>$supplier
+            ]);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
 
 
 }
