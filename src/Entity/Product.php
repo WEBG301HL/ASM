@@ -59,6 +59,11 @@ class Product
      */
     private $description;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Supplier::class, inversedBy="products")
+     */
+    private $sup;
+
     public function __construct()
     {
         $this->carts = new ArrayCollection();
@@ -179,6 +184,18 @@ class Product
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getSup(): ?Supplier
+    {
+        return $this->sup;
+    }
+
+    public function setSup(?Supplier $sup): self
+    {
+        $this->sup = $sup;
 
         return $this;
     }
