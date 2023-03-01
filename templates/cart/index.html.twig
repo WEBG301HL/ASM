@@ -30,10 +30,8 @@
                   </div>
                   <div>
                     <p class="mb-0"><span class="text-muted">Sort by price: </span> 
-                      {# {# <a href="#!" class="text-body">asc <i class="fas fa-angle-down mt-1"></i></a> #}
-                      {# <a href="" class="text-body" type="radio">desc <i class="fas fa-angle-down mt-1"></i></a> #}
-                      <a href="" style="text-decoration: none; color: #000000; "><input name="sortby" type="radio" value="ASC" />ASC</a>
-                      <a href="" style="text-decoration: none; color: #000000; "><input name="sortby" type="radio" value="DESC"/>DESC</a>
+                      <a href="{{path('sortbyASC')}}" style="text-decoration: none; color: #000000; "><i class="fa-solid fa-arrow-up-wide-short">ASC</i></a>
+                      <a href="{{path('sortbyDESC')}}" style="text-decoration: none; color: #000000; padding-left: 20px"><i class="fa-solid fa-arrow-down-wide-short">DESC</i></a>
                     </p>
                   </div>
                 </div>
@@ -121,7 +119,7 @@
                     <button type="button" class="btn btn-info btn-block btn-lg">
                       <div class="d-flex justify-content-between">
                         <span></span>
-                        <span>Checkout <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        <span><i class="fa-solid fa-cash-register"> </i> Checkout</span>
                       </div>
                     </button>
 

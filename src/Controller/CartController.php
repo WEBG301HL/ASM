@@ -31,6 +31,34 @@ class CartController extends AbstractController
         }
     }
 
+     /**
+     * @Route("/cart/sortASC", name="sortbyASC")
+     */
+    public function sortByASC(CartRepository $repo, Request $req): Response
+    {
+        $user = $this->getUser();
+        $carts = $repo->cartOrderBy($user->getId(), "asc");
+        $total= $repo->totalPricecart($user);
+        return $this->render('cart/index.html.twig',[
+            'carts'=>$carts,
+            'total'=>$total[0]['Total']
+        ]);
+    }
+
+     /**
+     * @Route("/cart/sortDESC", name="sortbyDESC")
+     */
+    public function sortByDESC(CartRepository $repo, Request $req): Response
+    {
+        $user = $this->getUser();
+        $carts = $repo->cartOrderBy($user->getId(), "desc");
+        $total= $repo->totalPricecart($user);
+        return $this->render('cart/index.html.twig',[
+            'carts'=>$carts,
+            'total'=>$total[0]['Total']
+        ]);
+    }   
+
     /**
      * @Route("/cart/add/{id}", name="add_cart")
      */
