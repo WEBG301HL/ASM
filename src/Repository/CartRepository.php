@@ -71,6 +71,24 @@ class CartRepository extends ServiceEntityRepository
         ;
     }
 
+      /**
+    * @return Cart[] Returns an array of Cart objects
+    */
+    public function cartOrderBy($value, $sort): array
+    {
+        return $this->createQueryBuilder('c')
+         ->select('c.id cid, p.name , c.quantity, p.price, p.image')
+             ->innerJoin('c.proCart','p')
+             ->innerJoin('c.userCart','u')
+            ->where('u.id = :val')
+            ->setParameter('val', $value)
+            ->addOrderBy('p.price', "$sort")
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
+
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */
