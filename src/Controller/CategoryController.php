@@ -8,13 +8,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CategoryController extends AbstractController
 {
-    /**
-     * @Route("/category", name="category_show")
-     */
-    public function catShow(): Response
-    {
-        return $this->render('admin/index.html.twig', [
-            'controller_name' => 'CategoryController',
-        ]);
-    }
+    // /**
+    //  * @Route("/category", name="category_show")
+    //  */
+    // public function catShow(): Response
+    // {
+    //     return $this->render('admin/index.html.twig', [
+    //         'controller_name' => 'CategoryController',
+    //     ]);
+    // }
 }
