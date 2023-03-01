@@ -172,7 +172,7 @@ class AdminController extends AbstractController
 
             $form->handleRequest($req);
             if($form->isSubmitted() && $form->isValid()){
-                $this->crepo->save($c,true);
+                $this->crepo->add($c,true);
                 return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
             }
             return $this->render("admin/category/add.html.twig",[
@@ -183,6 +183,8 @@ class AdminController extends AbstractController
             ]);
         }
     }
+
+
 }
     
 
