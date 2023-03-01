@@ -1,10 +1,10 @@
 {% extends 'admin/index.html.twig' %}
 {% block title %}
-    Admin Page - Category
+    Admin Page - Supplier
 {% endblock %}
 {% block body %}
      <div className="page-heading pb-2 mt-4 mb-2 ">
-                <h3>Manager</h3> <a href="{{path('category_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
+                <h3>Manager</h3> <a href="{{path('supplier_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
             </div>
             <div class="page-content mt-4">
                 <div class="card" style="padding-bottom: 40rem;">
@@ -17,12 +17,17 @@
                                     
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Category Name</label>
-                                                {{ form_widget(form.cat_name, {'attr':{'placeholder':'Category Name'}}) }}
+                                                <label for="first-name-vertical">Supplier Name</label>
+                                                {{ form_widget(form.sup_name, {'attr':{'placeholder':'Supplier Name'}}) }}
                                                 {# <input type="text" id="pname" class="form-control"
-                                                    name="Category_Name" placeholder="Category Name"
+                                                    name="Supllier_Name" placeholder="Supllier Name"
                                                     value =""> #}
                                             </div>
+                                             <div class="form-group">
+                                                <label for="contact-info-vertical">Address</label>
+                                                {{ form_widget(form.address, {'attr':{'placeholder':'adddress'}}) }}
+                                            </div>
+                                        </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end pt-2">
                                         

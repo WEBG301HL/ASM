@@ -7,6 +7,7 @@ use App\Entity\Product;
 use App\Entity\Supplier;
 use App\Form\CategoryType;
 use App\Form\ProductType;
+use App\Form\SupplierType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
 use App\Repository\SupplierRepository;
@@ -223,6 +224,29 @@ class AdminController extends AbstractController
             ]);
         }
         else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
+     /**
+     * @Route("/supplier/add", name="supplier_add")
+    */
+    public function addSup(Request $req,Security $security): Response
+    {
+         if ($security->isGranted('ROLE_ADMIN')) {
+            $c = new Supplier();
+            $form = $this->createForm(SupplierType::class, $c);
+
+            $form->handleRequest($req);
+            if($form->isSubmitted() && $form->isValid()){
+                $this->srepo->add($c,true);
+                return $this->redirectToRoute('supplier_show', [], Response::HTTP_SEE_OTHER);
+            }
+            return $this->render("admin/supplier/add.html.twig",[
+                'form' => $form->createView()
+            ]);
+        }else{
             return $this->render("error_admin.html.twig",[
             ]);
         }
