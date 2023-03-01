@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230227132341 extends AbstractMigration
+final class Version20230301074740 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -23,6 +23,9 @@ final class Version20230227132341 extends AbstractMigration
         $this->addSql('CREATE TABLE cart (id INT AUTO_INCREMENT NOT NULL, pro_cart_id INT DEFAULT NULL, user_cart_id INT DEFAULT NULL, quantity INT NOT NULL, INDEX IDX_BA388B7EF7C0B64 (pro_cart_id), INDEX IDX_BA388B742D8D3B5 (user_cart_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B7EF7C0B64 FOREIGN KEY (pro_cart_id) REFERENCES product (id)');
         $this->addSql('ALTER TABLE cart ADD CONSTRAINT FK_BA388B742D8D3B5 FOREIGN KEY (user_cart_id) REFERENCES user (id)');
+        $this->addSql('ALTER TABLE product ADD cat_id INT DEFAULT NULL, ADD description VARCHAR(500) NOT NULL');
+        $this->addSql('ALTER TABLE product ADD CONSTRAINT FK_D34A04ADE6ADA943 FOREIGN KEY (cat_id) REFERENCES category (id)');
+        $this->addSql('CREATE INDEX IDX_D34A04ADE6ADA943 ON product (cat_id)');
     }
 
     public function down(Schema $schema): void
@@ -31,5 +34,8 @@ final class Version20230227132341 extends AbstractMigration
         $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B7EF7C0B64');
         $this->addSql('ALTER TABLE cart DROP FOREIGN KEY FK_BA388B742D8D3B5');
         $this->addSql('DROP TABLE cart');
+        $this->addSql('ALTER TABLE product DROP FOREIGN KEY FK_D34A04ADE6ADA943');
+        $this->addSql('DROP INDEX IDX_D34A04ADE6ADA943 ON product');
+        $this->addSql('ALTER TABLE product DROP cat_id, DROP description');
     }
 }
