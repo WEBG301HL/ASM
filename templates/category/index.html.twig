@@ -1,0 +1,43 @@
+{% extends 'admin/index.html.twig' %}
+
+{% block title %}Category information - Admin site
+{% endblock %}
+
+{% block body %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>CATEGORY</th>
+				<th>ACTIONS</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for c in category %}
+				<tr>
+					<td>{{ c.id }}</td>
+					<td>{{ c.cat_name}}</td>	
+				</tr>
+		</tbody>
+	</table>
+
+{% endblock %}
+      <th scope="col">Actions</th>
+  </thead>
+   {% for a in caterory %}
+				<tbody>
+					<tr>
+						<td>{{a.id}}</td>
+						<td>{{a.name}}</td
+						<td>
+							<a href="{{ path('categpry_add', {'id':a.id}) }}" class="add" data-toggle="modal"><i class="fa-solid fa-user-pen" title="Edit"></i></a>
+							<a href="" class="delete" data-toggle="modal"><i class="fa-solid fa-trash-can" title="Delete"></i></a>
+						</td>
+				
+				</tbody>	</tr> {% endfor %}
+			</table>
+			
+		</div>
+	</div>        
+</div>
+{% endblock %}

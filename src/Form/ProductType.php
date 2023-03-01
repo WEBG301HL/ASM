@@ -18,6 +18,7 @@ class ProductType extends AbstractType{
         ->add('name')
         ->add('price')
         ->add('quantity', TextType::class)
+        ->add('description')
         ->add('created', DateType::class, [
             'widget' => 'single_text', 'required'=>false // nut chon thoi gian
         ])

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Product;
+use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Repository\CategoryRepository;
 use App\Repository\ProductRepository;
@@ -70,7 +72,7 @@ class AdminController extends AbstractController
     /**
      * @Route("/products/add", name="product_add")
     */
-    public function addShow(Request $req, SluggerInterface $slugger,Security $security): Response
+    public function addProduct(Request $req, SluggerInterface $slugger,Security $security): Response
     {
          if ($security->isGranted('ROLE_ADMIN')) {
             $p = new Product();
@@ -158,4 +160,30 @@ class AdminController extends AbstractController
         }
     }
 
+
+    /**
+     * @Route("/category/add", name="category_add")
+    */
+    public function addCategory(Request $req,Security $security): Response
+    {
+         if ($security->isGranted('ROLE_ADMIN')) {
+            $c = new Category();
+            $form = $this->createForm(CategoryType::class, $c);
+
+            $form->handleRequest($req);
+            if($form->isSubmitted() && $form->isValid()){
+                $this->crepo->save($c,true);
+                return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+            }
+            return $this->render("admin/category/add.html.twig",[
+                'form' => $form->createView()
+            ]);
+        }else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
 }
+    
+
+
