@@ -126,6 +126,15 @@ class AdminController extends AbstractController
         ]);
     }
 
+     /**
+     * @Route("/product/delete/{id}",name="product_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deletePro(Request $request, Product $p): Response
+     {
+         $this->repo->remove($p,true);
+         return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+     }
     
 
     // ------------------------------------------------------------------------------------- //
