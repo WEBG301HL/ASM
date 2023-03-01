@@ -57,7 +57,7 @@
                           <h5 class="mb-0">${{c.price}}</h5>
                         </div>
                      
-                        <a href="" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('cart_delete', {'id':c.cid}) }}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
                       </div>
                     </div>
                   </div>
