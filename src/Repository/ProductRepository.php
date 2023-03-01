@@ -70,7 +70,7 @@ class ProductRepository extends ServiceEntityRepository
    public function findPro($value): array
    {
        return $this->createQueryBuilder('p')
-           ->select('p.id,p.name,p.price,p.image')
+           ->select('p.id,p.name,p.price,p.image,p.description')
            ->where('p.name LIKE :productName')
            ->setParameter('productName',"%".$value."%")
            ->getQuery()

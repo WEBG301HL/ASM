@@ -21,6 +21,7 @@
                             <th>Price</th>
                             <th>Created</th>
                             <th>Quantity</th>
+                            <th>Description</th>
                             <th>Action</th>
                           </tr>
                         </thead>
@@ -32,6 +33,7 @@
                                   <td>{{ p.price}}</td>
                                   <td>{{ p.created|date("m/d/Y")}}</td>
                                   <td>{{ p.quantity}}</td>
+                                  <td>{{ p.description}}</td>
                                   <td>
                                     <a href="{{path('product_edit',{'id':p.id})}}">Edit</a>
                                   <a href="{{path('product_delete',{'id':p.id})}}">Delete</a></td>

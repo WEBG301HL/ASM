@@ -2,6 +2,7 @@
 {% block title %}
     Detail of product {{p.id}}
 {% endblock %}
+
 {% block body %}
 <section class="h-100 h-custom" style="background-color: #d2c9ff;">
   <div class="container py-5 h-100">
@@ -28,6 +29,7 @@
                         <div>  
                             <span class="product_info">Date: {{p.created|date("m/d/Y")}}<span><br> 
                             <span class="product_info">In Stock: {{p.quantity}}<span> </div>
+                            <span class="product_info">Description: {{p.description}}<span> </div>
                         
                         <hr class="singleline">
                         <div class="order_info d-flex flex-row">

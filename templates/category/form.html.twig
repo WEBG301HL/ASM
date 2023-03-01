@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+
+<div class="row">
+	<div class="form-group col-md-6">
+		<label>Name:</label>
+		{{ form_widget(form.cat_name, {'attr': {'class': 'form-control'}})}}
+		<small id="helpId" class="text-muted">Enter the name of a category.</small>
+	</div>
+
+</div>
+<div class="btn-group" role="group" aria-label="Basic example">
+	<button class="btn btn-success" type="submit" style="background-color: #FFF600; color: black">{{ button_label|default('Save') }}</button>
+	<a href="{{ path('app_category_index') }}" style="background-color: #A1DD70; color: black" class="btn btn-primary">Back to list</a>
+</div>
+{{ form_end(form) }}
