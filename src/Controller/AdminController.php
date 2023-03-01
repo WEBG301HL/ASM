@@ -126,6 +126,8 @@ class AdminController extends AbstractController
         ]);
     }
 
+    
+
     // ------------------------------------------------------------------------------------- //
 
     public function uploadImage($imgFile, SluggerInterface $slugger): ?string{
@@ -183,6 +185,16 @@ class AdminController extends AbstractController
             ]);
         }
     }
+
+    /**
+     * @Route("/category/delete/{id}",name="category_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deleteAcc(Request $request, Category $c): Response
+     {
+         $this->crepo->remove($c,true);
+         return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
+     }
 
 
 }
