@@ -11,10 +11,10 @@
 			<div class="table-title">
 				<div class="row">
 					<div class="col-sm-6">
-						<h2> Manager Product </h2>
+						<h2> Manager Supplier </h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="{{ path('category_add') }}" class="btn btn-success" data-toggle="modal"><i class="fa-solid fa-plus"></i><span>Add New Employee</span></a>
+						<a href="{{ path('supplier_add') }}" class="btn btn-success" data-toggle="modal"><i class="fa-solid fa-plus"></i><span>Add New Employee</span></a>
 						<a href="" class="btn btn-danger" data-toggle="modal"><i class="fa-regular fa-trash-can"></i><span>Delete</span></a>						
 					</div>
 				</div>
@@ -32,7 +32,7 @@
 				<tbody>
 					<tr>
 						<td>{{a.id}}</td>
-						<td>{{a.sup}}</td>
+						<td>{{a.supname}}</td>
                         <td>{{a.address}}</td>
 
 							<a href="" class="edit" data-toggle="modal"><i class="fa-solid fa-user-pen" title="Edit"></i></a>
