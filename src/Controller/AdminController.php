@@ -133,10 +133,16 @@ class AdminController extends AbstractController
      * @Route("/product/delete/{id}",name="product_delete",requirements={"id"="\d+"})
      */
     
-     public function deletePro(Request $request, Product $p): Response
+     public function deletePro(Request $request, Security $security, Product $p): Response
      {
-         $this->repo->remove($p,true);
-         return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $this->repo->remove($p,true);
+            return $this->redirectToRoute('product_show', [], Response::HTTP_SEE_OTHER);
+        }
+        else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
      }
     
 
@@ -334,11 +340,17 @@ class AdminController extends AbstractController
      * @Route("/accounts/delete/{id}",name="account_delete",requirements={"id"="\d+"})
      */
     
-     public function deleteAcc(Request $request, User $u): Response
+     public function deleteAcc(Request $request, Security $security, User $u): Response
      {
+        if ($security->isGranted('ROLE_ADMIN')) {
          $this->urepo->remove($u,true);
          return $this->redirectToRoute('account_show', [], Response::HTTP_SEE_OTHER);
      }
+     else{
+        return $this->render("error_admin.html.twig",[
+        ]);
+    }
+}
 
 }
     
