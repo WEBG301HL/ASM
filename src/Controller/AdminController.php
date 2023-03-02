@@ -252,6 +252,23 @@ class AdminController extends AbstractController
         }
     }
 
+        /**
+     * @Route("/supplier/edit/{id}", name="supplier_edit",requirements={"id"="\d+"})
+     */
+    public function editSup(Request $req, Supplier $c, SluggerInterface $slugger): Response
+    {
+        $form = $this->createForm(SupplierType::class, $c);   
+
+        $form->handleRequest($req);
+        if($form->isSubmitted() && $form->isValid()){
+            $this->srepo->add($c,true);
+            return $this->redirectToRoute('supplier_show', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render("admin/supplier/edit.html.twig",[
+            'form' => $form->createView()
+        ]);
+    }
+
 
 }
     

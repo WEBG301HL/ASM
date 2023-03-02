@@ -1,0 +1,49 @@
+{% extends 'admin/index.html.twig' %}
+{% block title %}
+    Admin Page - Supplier
+{% endblock %}
+{% block body %}
+     <div className="page-heading pb-2 mt-4 mb-2 ">
+                <h3>Manager</h3> <a href="{{path('supplier_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
+            </div>
+            <div class="page-content mt-4">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            {# <form class="form form-vertical" method="POST" action="#"> #}
+                            {{ form_start(form,{'attr':{'class':'form form-vertical'}} ) }}
+                                <div class="form-body">
+                                    <div class="row">
+                                    
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="first-name-vertical">Supplier Name</label>
+                                            {#    {{ form_widget(form.name, {'attr':{'placeholder':'Supplier Name'}}) }} #}
+                                                {# <input type="text" id="pname" class="form-control"
+                                                    name="Supplier_Name" placeholder="Supplier Name"
+                                                    value =""> #}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="contact-info-vertical">Address</label>
+                                                {{ form_widget(form.address, {'attr':{'placeholder':'Address'}}) }}
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="col-12 d-flex justify-content-end pt-2">
+                                        
+                                            {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
+                                          <button type="reset"
+                                                class="btn btn-secondary">Reset</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {# </form> #}
+                            {{ form_end(form) }}
+                        </div> <!--card body-->
+                    
+                    </div> <!--card content-->
+                </div> <!--card-->
+            </div><!--page content--> 
+{% endblock %}
