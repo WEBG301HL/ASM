@@ -285,6 +285,15 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/supplier/delete/{id}",name="supplier_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deleteSup(Request $request, supplier $p): Response
+     {
+         $this->srepo->remove($p,true);
+         return $this->redirectToRoute('supplier_show', [], Response::HTTP_SEE_OTHER);
+     }
 
     // ========================================================================= //
 
