@@ -1,73 +1,80 @@
 {% extends 'home.html.twig' %}
 
-{% block title %}Search Product{% endblock %}
+{% block title %}Search Product
+{% endblock %}
 
 {% block body %}
-    <main>
-    <div style="font-family: cursive" class="container">
-  <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #21d192">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
+	<main>
+		<div
+			style="font-family: cursive" class="container">
+			<!-- Navbar -->
+			<nav
+				class="navbar navbar-expand-lg navbar-dark mt-3 mb-5 shadow p-2" style="background-color: #21d192">
+				<!-- Container wrapper -->
+				<div class="container-fluid">
 
-    <!-- Navbar brand -->
-    {# <a class="navbar-brand" href="#">Categories:</a> #}
+					<!-- Navbar brand -->
+					{# <a class="navbar-brand" href="#">Categories:</a> #}
 
-    <!-- Toggle button -->
-    <button 
-       class="navbar-toggler" 
-       type="button" 
-       data-bs-toggle="collapse" 
-       data-bs-target="#navbarSupportedContent2">
-      <i class="fas fa-bars"></i>
-    </button>
+					<!-- Toggle button -->
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2"> <i class="fas fa-bars"></i>
+					</button>
 
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent2">
-      
-    </div>
-  </div>
-  <!-- Container wrapper -->
-</nav>
+					<!-- Collapsible wrapper -->
+					<div class="collapse navbar-collapse" id="navbarSupportedContent2">
+						<p style="font-size: 1.5rem;">Result of search: "
+							{{search }}
+							"</p>
+					</div>
+				</div>
+				<!-- Container wrapper -->
+			</nav>
 
 
-{# -------------------------------------------------------------- #}
-<div class="container py-5">
-    <div class="row text-center text-white mb-5">
-        <div class="col-lg-7 mx-auto">
-            <h1 style="color: red" class="display-4">Result of search: {{search }}</h1>
-        </div>
-    </div>
-    <div class="row">
-     {% for p in products %}
-        <div class="col-lg-6 mx-auto">
-            <!-- List group-->
-            <ul class="list-group shadow">
-                <!-- list group item-->
-                <li style="margin-bottom: 20px++;" class="list-group-item">
-                    <!-- Custom content-->
-                    <div class="media align-items-lg-center flex-column flex-lg-row p-3">
-                        <div class="media-body order-2 order-lg-1">
-                            <a style="text-decoration: none;" href="{{path('product_read',{"id":p.id})}}"><h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5></a>
-                            <div class="d-flex align-items-center justify-content-between mt-1">
-                                <h6 class="font-weight-bold my-2">{{p.price}} $</h6>
-                            </div>
-                            {% set img = p.image %}
-                        </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
-<div class="col-md-6 col-sm-6 col-xs-6"> 
-							              <a href="{{ path('add_cart',{"id":p.id}) }}" class="btn btn-success">Add to cart</a>
-                                          <a href="{{path('homepage')}}" class="btn btn-success">Back to home</a>
-						              </div>
-                    </div> <!-- End -->
+			{# -------------------------------------------------------------- #}
+			<div class="container py-5">
 
-                </li> <!-- End -->
-                <!-- list group item-->
-            </ul> <!-- End --> <br> <br>
-           
-        </div>  {% endfor %}
-    </div>
+				<div class="row">
+					{% for p in products %}
+						<div
+							class="col-lg-6 mx-auto">
+							<!-- List group-->
+							<ul
+								class="list-group shadow">
+								<!-- list group item-->
+								<li
+									style="margin-bottom: 20px++;" class="list-group-item">
+									<!-- Custom content-->
+									<div class="media align-items-lg-center flex-column flex-lg-row p-3">
+										<div class="media-body order-2 order-lg-1">
+											<a style="text-decoration: none;" href="{{path('product_read',{"id":p.id})}}">
+												<h5 class="mt-0 font-weight-bold mb-2">{{p.name}}</h5>
+											</a>
+											<div class="d-flex align-items-center justify-content-between mt-1">
+												<h6 class="font-weight-bold my-2">{{p.price}}
+													$</h6>
+											</div>
+											{% set img = p.image %}
+										</div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
+										<div class="col-md-6 col-sm-6 col-xs-6">
+											<a href="{{path('product_read',{"id":p.id})}}" class="btn btn-success">See More</a>
+										</div>
+									</div>
+									<!-- End -->
 
-</div>
-</main>
- <!--Main layout-->
-{% endblock %}
+								</li>
+								<!-- End -->
+								<!-- list group item-->
+							</ul>
+							<!-- End -->
+							<br>
+							<br>
+
+						</div>
+					{% endfor %}
+				</div>
+
+			</div>
+		</main>
+		<!--Main layout-->
+	{% endblock %}

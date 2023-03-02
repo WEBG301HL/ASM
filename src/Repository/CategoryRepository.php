@@ -39,6 +39,19 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+    * @return Category[] Returns an array of Cart objects
+    */
+    public function catSortBy($value): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id id, c.cat_name catname')
+            ->addOrderBy('catname', "$value")
+            ->getQuery()
+            ->getArrayResult()
+        ;
+    }
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

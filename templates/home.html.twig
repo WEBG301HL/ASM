@@ -150,7 +150,7 @@
 <div class="container py-5">
     <div class="row text-center text-white mb-5">
         <div class="col-lg-7 mx-auto">
-            <h1 style="color: black" class="display-4">Product List</h1>
+            <h1 style="color: black" class="display-4">Trending Products</h1>
         </div>
     </div>
     <div class="row">
@@ -171,7 +171,7 @@
                             {% set img = p.image %}
                         </div><img style="height: 200px;width: 260px;" src="{{asset('uploads/'~img)}}" alt="Generic placeholder image" width="300" class="ml-lg-5 order-1 order-lg-2">
                           <div class="col-md-6 col-sm-6 col-xs-6"> 
-							              <a href="javascript:void(0);" class="btn btn-success">Add to cart</a>
+							              <a href="{{path('product_read',{"id":p.id})}}" class="btn btn-success">See More</a>
 						              </div>
                     </div> <!-- End -->
 

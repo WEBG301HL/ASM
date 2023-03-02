@@ -199,6 +199,22 @@ class AdminController extends AbstractController
     }
 
     /**
+     * @Route("/category/sortby", name="category_sort")
+     */
+    public function sortByName(Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+        $category = $this->crepo->catSortBy("asc");
+        return $this->render('admin/category/index.html.twig',[
+            'category'=>$category
+        ]);
+        }else{
+            return $this->render("error_admin.html.twig",[
+            ]);
+        }
+    }
+
+    /**
      * @Route("/category/delete/{id}",name="category_delete",requirements={"id"="\d+"})
      */
     
