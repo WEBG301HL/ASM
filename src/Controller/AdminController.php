@@ -44,10 +44,7 @@ class AdminController extends AbstractController
     public function index(Security $security): Response
     {
         if ($security->isGranted('ROLE_ADMIN')) {
-        $accounts = $this->urepo->findAll();
-        return $this->render('admin/index.html.twig', [
-            'accounts'=>$accounts
-        ]);
+            return $this->render('admin/index.html.twig', []);
         }
         else{
             return $this->render("error_admin.html.twig",[
@@ -288,6 +285,24 @@ class AdminController extends AbstractController
     }
 
 
+    // ========================================================================= //
+
+    /**
+     * @Route("/accounts", name="account_show")
+     */
+    public function accShow(Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $accounts = $this->urepo->findAll();
+            return $this->render('admin/account/index.html.twig', [
+                'accounts'=>$accounts
+            ]);
+            }
+            else{
+                return $this->render("error_admin.html.twig",[
+                ]);
+            }
+    }
 }
     
 
