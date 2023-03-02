@@ -24,6 +24,7 @@ class UserType extends AbstractType
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password']
             ])
+            ->add('address', TextType::class)
             ->add('add', SubmitType::class,[
                 'label' => "Register"
             ]);
