@@ -37,7 +37,7 @@
 						<td>{{a.email}}</td>
 						<td>{{a.address}}</td>
 						<td>
-							<a href="" class="delete" data-toggle="modal"><i class="fa-solid fa-trash-can" title="Delete"></i></a>
+							<a href="{{ path('account_delete', {'id':a.id}) }}" class="delete" data-toggle="modal"><i class="fa-solid fa-trash-can" title="Delete"></i></a>
 						</td>
 				
 				</tbody>	</tr> {% endfor %}

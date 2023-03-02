@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Supplier;
+use App\Entity\User;
 use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Form\SupplierType;
@@ -201,7 +202,7 @@ class AdminController extends AbstractController
      * @Route("/category/delete/{id}",name="category_delete",requirements={"id"="\d+"})
      */
     
-     public function deleteAcc(Request $request, Category $c): Response
+     public function deleteCat(Request $request, Category $c): Response
      {
          $this->crepo->remove($c,true);
          return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
@@ -303,6 +304,17 @@ class AdminController extends AbstractController
                 ]);
             }
     }
+
+    /**
+     * @Route("/accounts/delete/{id}",name="account_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deleteAcc(Request $request, User $u): Response
+     {
+         $this->urepo->remove($u,true);
+         return $this->redirectToRoute('account_show', [], Response::HTTP_SEE_OTHER);
+     }
+
 }
     
 
