@@ -1,6 +1,9 @@
 <?php
 namespace App\Form;
 
+use App\Entity\Category;
+use App\Entity\Supplier;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 // use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -22,6 +25,8 @@ class ProductType extends AbstractType{
         ->add('created', DateType::class, [
             'widget' => 'single_text', 'required'=>false // nut chon thoi gian
         ])
+        ->add('cat', EntityType::class, ['class'=>Category::class,'choice_label'=>'id'])
+        ->add('sup', EntityType::class, ['class'=>Supplier::class,'choice_label'=>'id'])
         ->add('file', FileType::class, [
             'label' => 'Product Image',
             'required' => false,

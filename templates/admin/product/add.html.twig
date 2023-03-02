@@ -53,6 +53,18 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <label for="contact-info-vertical">Category ID</label>
+                                                {{ form_widget(form.cat, {'attr':{'placeholder':'categoryID'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="contact-info-vertical">Supplier</label>
+                                                {{ form_widget(form.sup, {'attr':{'placeholder':'supplierID'}}) }}
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label for="image-vertical"> {{ form_label(form.file) }}</label>
                                                
                                                 {{ form_widget(form.file) }}
