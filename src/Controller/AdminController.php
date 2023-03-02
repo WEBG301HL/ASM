@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Entity\Product;
 use App\Entity\Supplier;
+use App\Entity\User;
 use App\Form\CategoryType;
 use App\Form\ProductType;
 use App\Form\SupplierType;
@@ -44,10 +45,7 @@ class AdminController extends AbstractController
     public function index(Security $security): Response
     {
         if ($security->isGranted('ROLE_ADMIN')) {
-        $accounts = $this->urepo->findAll();
-        return $this->render('admin/index.html.twig', [
-            'accounts'=>$accounts
-        ]);
+            return $this->render('admin/index.html.twig', []);
         }
         else{
             return $this->render("error_admin.html.twig",[
@@ -204,7 +202,7 @@ class AdminController extends AbstractController
      * @Route("/category/delete/{id}",name="category_delete",requirements={"id"="\d+"})
      */
     
-     public function deleteAcc(Request $request, Category $c): Response
+     public function deleteCat(Request $request, Category $c): Response
      {
          $this->crepo->remove($c,true);
          return $this->redirectToRoute('category_show', [], Response::HTTP_SEE_OTHER);
@@ -295,6 +293,35 @@ class AdminController extends AbstractController
      {
          $this->srepo->remove($p,true);
          return $this->redirectToRoute('supplier_show', [], Response::HTTP_SEE_OTHER);
+     }
+
+    // ========================================================================= //
+
+    /**
+     * @Route("/accounts", name="account_show")
+     */
+    public function accShow(Security $security): Response
+    {
+        if ($security->isGranted('ROLE_ADMIN')) {
+            $accounts = $this->urepo->findAll();
+            return $this->render('admin/account/index.html.twig', [
+                'accounts'=>$accounts
+            ]);
+            }
+            else{
+                return $this->render("error_admin.html.twig",[
+                ]);
+            }
+    }
+
+    /**
+     * @Route("/accounts/delete/{id}",name="account_delete",requirements={"id"="\d+"})
+     */
+    
+     public function deleteAcc(Request $request, User $u): Response
+     {
+         $this->urepo->remove($u,true);
+         return $this->redirectToRoute('account_show', [], Response::HTTP_SEE_OTHER);
      }
 
 }
