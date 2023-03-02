@@ -29,6 +29,8 @@
 								<th>Name</th>
 								<th>Price</th>
 								<th>Image</th>
+								<th>Cat Name</th>
+								<th>Sup Name</th>
 								<th>Quantity</th>
 								<th>Description</th>
 								<th>Actions</th>
@@ -42,6 +44,8 @@
 									<td>{{a.price}}</td>
 									{% set img = a.image %}
 									<td><img style="height: 100;width: 140px;border-radius: 50px" src="{{asset('uploads/'~img)}}"></td>
+									<td>{{a.cat}}</td>
+									<td>{{a.sup}}</td>
 									<td>{{a.quantity}}</td>
 									<td>{{a.description}}</td>
 									<td>
