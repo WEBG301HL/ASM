@@ -1,13 +1,13 @@
 {% extends 'admin/index.html.twig' %}
 {% block title %}
-    Admin Page - Supplier
+    Admin Page - Category
 {% endblock %}
 {% block body %}
      <div className="page-heading pb-2 mt-4 mb-2 ">
-                <h3>Manager</h3> <a href="{{path('supplier_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
+                <h3>Manager</h3> <a href="{{path('category_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
             </div>
             <div class="page-content mt-4">
-                <div class="card">
+                <div class="card" style="padding-bottom: 40rem;">
                     <div class="card-content">
                         <div class="card-body">
                             {# <form class="form form-vertical" method="POST" action="#"> #}
@@ -18,19 +18,15 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="first-name-vertical">Supplier Name</label>
-                                            {#    {{ form_widget(form.name, {'attr':{'placeholder':'Supplier Name'}}) }} #}
-                                                {# <input type="text" id="pname" class="form-control"
-                                                    name="Supplier_Name" placeholder="Supplier Name"
-                                                    value =""> #}
-                                            </div>
+                                                {{ form_widget(form.sup_name, {'attr':{'placeholder':'Supplier Name'}}) }}
+                                            </div>                                       
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="contact-info-vertical">Address</label>
+                                                <label for="first-name-vertical">Address</label>
                                                 {{ form_widget(form.address, {'attr':{'placeholder':'Address'}}) }}
-                                            </div>
+                                            </div>                                       
                                         </div>
-                                         
                                         <div class="col-12 d-flex justify-content-end pt-2">
                                         
                                             {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
