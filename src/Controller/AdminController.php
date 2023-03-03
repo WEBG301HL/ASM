@@ -299,8 +299,9 @@ class AdminController extends AbstractController
         /**
      * @Route("/supplier/edit/{id}", name="supplier_edit",requirements={"id"="\d+"})
      */
-    public function editSup(Request $req, Supplier $c, SluggerInterface $slugger): Response
+    public function editSup(Request $req, Supplier $c, SluggerInterface $slugger,Security $security): Response
     {
+        if ($security->isGranted('ROLE_ADMIN')){
         $form = $this->createForm(SupplierType::class, $c);   
 
         $form->handleRequest($req);
@@ -312,6 +313,8 @@ class AdminController extends AbstractController
             'form' => $form->createView()
         ]);
     }
+}
+
 
     /**
      * @Route("/supplier/delete/{id}",name="supplier_delete",requirements={"id"="\d+"})
