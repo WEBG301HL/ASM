@@ -15,7 +15,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('cat_name')
             ->add('save',SubmitType::class,[
-                'label'=>'comfim'
+                'label'=>'Confirm'
             ])
         ;
     }

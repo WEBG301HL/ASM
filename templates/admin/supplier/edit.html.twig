@@ -7,7 +7,7 @@
                 <h3>Manager</h3> <a href="{{path('supplier_show')}}"><button type="button" class="btn btn-outline-primary">Back to index</button></a>
             </div>
             <div class="page-content mt-4">
-                <div class="card">
+                <div class="card" style="padding-bottom: 40rem;">
                     <div class="card-content">
                         <div class="card-body">
                             {# <form class="form form-vertical" method="POST" action="#"> #}
@@ -17,7 +17,7 @@
                                     
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Supplier Name</label>
+                                                <label for="first-name-vertical"></label>
                                             {#    {{ form_widget(form.name, {'attr':{'placeholder':'Supplier Name'}}) }} #}
                                                 {# <input type="text" id="pname" class="form-control"
                                                     name="Supplier_Name" placeholder="Supplier Name"
@@ -28,6 +28,8 @@
                                             <div class="form-group">
                                                 <label for="contact-info-vertical">Address</label>
                                                 {{ form_widget(form.address, {'attr':{'placeholder':'Address'}}) }}
+                                                <label for="contact-info-vertical">Supplier Name</label>
+                                                {{ form_widget(form.sup_name, {'attr':{'placeholder':'Supplier Name'}}) }}
                                             </div>
                                         </div>
                                          
