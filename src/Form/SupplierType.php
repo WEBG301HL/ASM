@@ -16,7 +16,7 @@ class SupplierType extends AbstractType
             ->add('sup_name')
             ->add('address')
             ->add('save',SubmitType::class,[
-                'label'=>'comfim'
+                'label'=>'Confirm'
             ])
         ;
     }
