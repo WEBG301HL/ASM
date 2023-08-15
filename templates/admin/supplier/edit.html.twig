@@ -16,13 +16,20 @@
                                     <div class="row">  
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Supplier Name</label>
-                                                {{ form_widget(form.sup_name, {'attr':{'placeholder':'Supplier Name'}}) }}
-                                            </div>                                       
+                                                <label for="first-name-vertical"></label>
+                                            {#    {{ form_widget(form.name, {'attr':{'placeholder':'Supplier Name'}}) }} #}
+                                                {# <input type="text" id="pname" class="form-control"
+                                                    name="Supplier_Name" placeholder="Supplier Name"
+                                                    value =""> #}
+                                            </div>
+                                        </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Address</label>
+                                                <label for="contact-info-vertical">Supplier Name</label>
+                                                {{ form_widget(form.sup_name, {'attr':{'placeholder':'Supplier Name'}}) }}
+                                                <label for="contact-info-vertical">Address</label>
                                                 {{ form_widget(form.address, {'attr':{'placeholder':'Address'}}) }}
+                                            </div>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end pt-2">
                                             {{ form_widget(form.save,{'attr':{'class':'btn btn-primary me-2'}}) }}
